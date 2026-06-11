@@ -71,7 +71,7 @@ Add the server to `.cursor/mcp.json`:
 ## Listings
 
 - Official MCP registry: `com.origineparis/mcp` ([registry API entry](https://registry.modelcontextprotocol.io/v0.1/servers/com.origineparis%2Fmcp/versions/latest))
-- Glama connectors: [GLAMA_URL]
+- Glama connectors: [com.origineparis/mcp](https://glama.ai/mcp/connectors/com.origineparis/mcp)
 - Brand website: [origineparis.com](https://origineparis.com)
 
 ## Copyright
