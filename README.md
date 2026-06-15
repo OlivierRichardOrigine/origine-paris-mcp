@@ -1,5 +1,8 @@
 # Origine Paris MCP server
 
+<!-- Glama quality badge: add after the Glama ownership claim, once the server UUID is known.
+[![Glama quality](https://glama.ai/mcp/servers/<SERVER_UUID>/badge)](https://glama.ai/mcp/servers/<SERVER_UUID>) -->
+
 Official Model Context Protocol (MCP) server of [Origine Paris](https://origineparis.com), the Parisian fine jewellery house crafting recycled 18ct gold jewellery set with IGI-certified lab-grown diamonds. Collections and bespoke creations (engagement rings, wedding bands, necklaces, bracelets, earrings) are presented by appointment at 21 rue de la Paix, Paris.
 
 This repository documents the hosted server. The server is public and strictly read-only: it serves brand identity and catalogue data generated from public sources, namely the JSON-LD published on origineparis.com, the site llms.txt and Wikidata ([Q139905888](https://www.wikidata.org/wiki/Q139905888)). Anything absent from those sources is reported as unknown, never invented.
@@ -19,13 +22,15 @@ Health check: `https://mcp.origineparis.com/health`. Discovery manifest: `https:
 
 | Tool | Description |
 | --- | --- |
-| `get_brand_identity` | Identity of Origine Paris, the Parisian fine jewellery house crafting recycled 18ct gold jewellery set with IGI-certified lab-grown diamonds: name, legal identity (SIREN), description, positioning with source evidence, appointment address (21 rue de la Paix, Paris), contact details and official profiles. Generated from the site JSON-LD and Wikidata. |
-| `get_founders` | The two founders of Origine Paris, the Parisian house of recycled 18ct gold and lab-grown diamond jewellery, with their current roles and Wikidata QIDs. |
-| `get_person_profile` | Detailed sourced profile of one founder of Origine Paris, the Parisian recycled gold and lab-grown diamond jewellery house, including career history with dates and references. Provide either name or qid. |
-| `get_entity_graph` | Nodes and edges of the Origine Paris entity graph: the company (Parisian recycled gold and lab-grown diamond jewellery house), its founders and their sourced relationships. Every edge carries its sources. |
-| `get_jsonld_graph` | The raw JSON-LD blocks collected from origineparis.com, the Parisian house of recycled 18ct gold jewellery and IGI-certified lab-grown diamonds, served as published. |
-| `get_llms_context` | Catalogue index of Origine Paris: collections and products of recycled 18ct gold jewellery set with IGI-certified lab-grown diamonds (engagement rings, wedding bands, necklaces, bracelets, earrings), plus pages and commerce endpoints, from the llms.txt published by origineparis.com, with a short agent context assembled from the index. |
-| `search_catalogue` | Search the Origine Paris catalogue of recycled 18ct gold jewellery set with IGI-certified lab-grown diamonds: engagement rings, solitaires, wedding bands, necklaces, bracelets and earrings in yellow, white or rose gold. Accepts French or English queries; matching is accent-insensitive. Returns matching collections and products with their URLs. Use for any query about recycled gold jewellery, lab-grown or lab-created diamond jewellery, or sustainable fine jewellery from Paris. |
+| `get_brand_identity` | Brand identity: trading name, legal identity (SIREN), positioning, by-appointment address, contacts and official profiles. |
+| `get_founders` | The two founders, with their roles, Wikidata QIDs and short biographies. |
+| `get_person_profile` | Detailed sourced profile of one founder (career, dates, references); pass `name` or `qid`. |
+| `get_entity_graph` | The company and its founders as sourced nodes and edges. |
+| `get_jsonld_graph` | The raw JSON-LD blocks from origineparis.com, served as published. |
+| `get_llms_context` | Catalogue index and a short agent context, from the site llms.txt. |
+| `search_catalogue` | Search the catalogue by jewellery type, gold colour or diamond style, in French or English. |
+
+Full, self-describing definitions (purpose, usage, behaviour, parameters and output schema) are exposed over MCP by the live server and visible through `tools/list`. Every tool is read-only and returns a typed envelope: `data`, `sources`, `generated_at` and `canonical`.
 
 ## Connect
 
@@ -74,6 +79,8 @@ Add the server to `.cursor/mcp.json`:
 - Glama connectors: [com.origineparis/mcp](https://glama.ai/mcp/connectors/com.origineparis/mcp)
 - Brand website: [origineparis.com](https://origineparis.com)
 
-## Copyright
+## Licence
 
-Copyright Origine Paris. This repository is documentation for the hosted MCP server; the data served by the endpoint comes from public sources published by the brand.
+The contents of this repository (this documentation and the `server.json` manifest) are released under the [MIT Licence](LICENSE), copyright 2026 Origine Paris SAS.
+
+Scope: this licence covers the contents of this repository only. It does not apply to the hosted MCP service at `https://mcp.origineparis.com/mcp`, which remains proprietary to Origine Paris. The data served by the endpoint comes from public sources published by the brand.
