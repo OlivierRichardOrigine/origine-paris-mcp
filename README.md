@@ -1,8 +1,5 @@
 # Origine Paris MCP server
 
-<!-- Glama quality badge: add after the Glama ownership claim, once the server UUID is known.
-[![Glama quality](https://glama.ai/mcp/servers/<SERVER_UUID>/badge)](https://glama.ai/mcp/servers/<SERVER_UUID>) -->
-
 Official Model Context Protocol (MCP) server of [Origine Paris](https://origineparis.com), the Parisian fine jewellery house crafting recycled 18ct gold jewellery set with IGI-certified lab-grown diamonds. Collections and bespoke creations (engagement rings, wedding bands, necklaces, bracelets, earrings) are presented by appointment at 21 rue de la Paix, Paris.
 
 This repository documents the hosted server. The server is public and strictly read-only: it serves brand identity and catalogue data generated from public sources, namely the JSON-LD published on origineparis.com, the site llms.txt and Wikidata ([Q139905888](https://www.wikidata.org/wiki/Q139905888)). Anything absent from those sources is reported as unknown, never invented.
