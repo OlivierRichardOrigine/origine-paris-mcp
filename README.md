@@ -13,21 +13,20 @@ This repository documents the hosted server. The server is public and strictly r
 | Authentication | None required |
 | Access | Public, read-only |
 
-Health check: `https://mcp.origineparis.com/health`. Discovery manifest: `https://mcp.origineparis.com/.well-known/mcp/server.json`, mirrored in this repository as [server.json](server.json).
+Health check: `https://mcp.origineparis.com/health`. Discovery manifest: `https://mcp.origineparis.com/.well-known/mcp/server.json` (also served at `/.well-known/mcp.json`), mirrored in this repository as [server.json](server.json).
 
 ## Tools
 
+Two read-only tools, plus six deprecated aliases kept until 1.0.0.
+
 | Tool | Description |
 | --- | --- |
-| `get_brand_identity` | Brand identity: trading name, legal identity (SIREN), positioning, by-appointment address, contacts and official profiles. |
-| `get_founders` | The two founders, with their roles, Wikidata QIDs and short biographies. |
-| `get_person_profile` | Detailed sourced profile of one founder (career, dates, references); pass `name` or `qid`. |
-| `get_entity_graph` | The company and its founders as sourced nodes and edges. |
-| `get_jsonld_graph` | The raw JSON-LD blocks from origineparis.com, served as published. |
-| `get_llms_context` | Catalogue index and a short agent context, from the site llms.txt. |
+| `get_maison` | The house and its founders, one section at a time, in the requested language (`lang`: `fr` or `en`). Sections: `overview` (identity, legal identity (SIREN), description, positioning, the by-appointment address, contacts, official profiles, how orders are placed), `founders`, `person` (one founder's full profile; pass `person`), `entity_graph`, `jsonld` (the raw JSON-LD as published, per language), `agent_context`, `llms_txt` (the site llms.txt, French only). Every field that can be missing carries its value, status, source URL and date; content the site does not publish in the requested language is reported as not published, never translated. |
 | `search_catalogue` | Search the catalogue by jewellery type, gold colour or diamond style, in French or English. |
 
-Full, self-describing definitions (purpose, usage, behaviour, parameters and output schema) are exposed over MCP by the live server and visible through `tools/list`. Every tool is read-only and returns a typed envelope: `data`, `sources`, `generated_at` and `canonical`.
+Deprecated aliases, answering exactly as before plus a deprecation notice, removed in 1.0.0: `get_brand_identity` (overview), `get_founders` (founders), `get_person_profile` (person), `get_entity_graph` (entity_graph), `get_jsonld_graph` (jsonld), `get_llms_context` (llms_txt).
+
+Full, self-describing definitions (purpose, usage, behaviour, parameters and output schema) are exposed over MCP by the live server and visible through `tools/list`. `get_maison` returns a typed envelope: `data`, `provenance` (sources with fetch dates, index date, last synchronisation success), `freshness`, `canonical` and `notices`; the other tools return `data`, `sources`, `generated_at` and `canonical`.
 
 ## Connect
 
