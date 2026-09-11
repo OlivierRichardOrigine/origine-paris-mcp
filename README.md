@@ -17,7 +17,7 @@ Health check: `https://mcp.origineparis.com/health`. Discovery manifest: `https:
 
 ## Tools
 
-Three read-only tools, plus six deprecated aliases kept until 1.0.0.
+Three read-only tools, the ones `tools/list` offers. The six identity tools of earlier versions are no longer listed since 0.8.0: called by name they still answer, with a deprecation notice, until 1.0.0.
 
 | Tool | Description |
 | --- | --- |
@@ -25,7 +25,7 @@ Three read-only tools, plus six deprecated aliases kept until 1.0.0.
 | `get_product_detail` | Everything the site publishes about one piece (`lang` required; `handle` or the product URL, or `product_id` as a Shopify gid; optional `size`), each field with its status, source and date. The description is the published text, never parsed. The price is the one published on the site at the date of reading, and it is the price payable at the online checkout while the site publishes that the catalogue is bought online. Whether a piece can be bought online is read from the site itself, never guessed. Bespoke pieces and sizes outside the published range come with a consultation block. |
 | `search_catalogue` | Structured search over the published catalogue (`lang` required; free-text `query` plus the filters `jewellery_type`, `collection`, `gold_colour`, `min_price`, `max_price`; `limit` and `cursor`). The jewellery type, given or detected in the query, is a tier: a piece of another type never precedes a piece of the requested type. Every result carries its score, the maximum possible and the reasons behind it. Collections come back as facets rather than results, and pagination is stateless. Bespoke intents and queries with no match come with a consultation block. |
 
-Deprecated aliases, answering exactly as before plus a deprecation notice, removed in 1.0.0: `get_brand_identity` (overview), `get_founders` (founders), `get_person_profile` (person), `get_entity_graph` (entity_graph), `get_jsonld_graph` (jsonld), `get_llms_context` (llms_txt).
+Unlisted aliases, answering exactly as before plus a deprecation notice naming the replacement, removed in 1.0.0: `get_brand_identity` (overview), `get_founders` (founders), `get_person_profile` (person), `get_entity_graph` (entity_graph), `get_jsonld_graph` (jsonld), `get_llms_context` (llms_txt).
 
 Full, self-describing definitions (purpose, usage, behaviour, parameters and output schema) are exposed over MCP by the live server and visible through `tools/list`. `get_maison` returns a typed envelope: `data`, `provenance` (sources with fetch dates, index date, last synchronisation success), `freshness`, `canonical` and `notices`; the other tools return `data`, `sources`, `generated_at` and `canonical`.
 
